@@ -1,6 +1,9 @@
 package main
 
 import (
+	"math/rand"
+	"time"
+
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -9,5 +12,16 @@ import (
 */
 
 var (
-	counter = prometheus.NewCounterVec("")
+	counter = prometheus.NewCounterVec(prometheus.CounterOpts{
+		Name: "counter_demo",
+		Help: "just a demo",
+	}, []string{"type"})
 )
+
+func start() {
+	for {
+		value := rand.Intn(100)
+		counter.With(prometheus.Labels{"type": "demo"}).Add(float64(value))
+		time.Sleep(1 * time.Second)
+	}
+}
