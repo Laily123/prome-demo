@@ -7,7 +7,6 @@ import (
 	"os"
 	"prome-demo/target"
 
-	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -27,11 +26,6 @@ func init() {
 		os.Exit(0)
 	}
 	target.ConfigDir = configDir
-}
-
-func initProme() {
-	prometheus.MustRegister(counter)
-	go start()
 }
 
 func main() {

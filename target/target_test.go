@@ -28,6 +28,7 @@ func TestAddTarget(t *testing.T) {
 	addr := []string{"http://127.0.0.1"}
 	targetID := "xxxx2"
 	group := ""
-	err := AddTarget(configFilePath, addr, targetID, group)
+	instance := "instance"
+	err := AddTarget(configFilePath, addr, targetID, group, instance)
 	t.Log(err)
 }

@@ -25,3 +25,8 @@ func start() {
 		time.Sleep(1 * time.Second)
 	}
 }
+
+func initProme() {
+	prometheus.MustRegister(counter)
+	go start()
+}

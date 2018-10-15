@@ -15,6 +15,7 @@ type requestParms struct {
 	Addr     string `json:"addr"`
 	TargetID string `json:"target_id"`
 	JobName  string `json:"job_name"`
+	Instance string `json:"instance"`
 	Group    string `json:"group"`
 }
 
@@ -44,7 +45,7 @@ func AddTargetHandler(w http.ResponseWriter, r *http.Request) {
 
 	configFile := params.JobName + ".json"
 	path := filepath.Join(ConfigDir, configFile)
-	err = AddTarget(path, []string{params.Addr}, params.TargetID, params.Group)
+	err = AddTarget(path, []string{params.Addr}, params.TargetID, params.Group, params.Instance)
 	if err != nil {
 		makeResponse(w, "", err.Error())
 		return
@@ -62,6 +63,9 @@ func checkParams(params *requestParms) string {
 	}
 	if params.JobName == "" {
 		return "job_name is empty"
+	}
+	if params.Instance == "" {
+		return "instance is empty"
 	}
 	return ""
 }

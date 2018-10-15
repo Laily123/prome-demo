@@ -12,6 +12,7 @@ import (
 const (
 	tag_target_id    = "target_id"
 	tag_target_group = "target_group"
+	tag_instance     = "instance"
 )
 
 // AddTarget 添加 scrape target
@@ -21,7 +22,7 @@ const (
 // addr: scrape metrics address, like "xx.com:8080"
 // targetID: unique for targets. can use hostname+port
 // group: add a group for target
-func AddTarget(configFileName string, addr []string, targetID, group string) error {
+func AddTarget(configFileName string, addr []string, targetID, group, instance string) error {
 	c := &ConfigFile{}
 	c.path = configFileName
 	fileObj, err := os.OpenFile(c.path, os.O_RDWR, os.ModePerm)
@@ -48,6 +49,7 @@ func AddTarget(configFileName string, addr []string, targetID, group string) err
 		Labels: map[string]string{
 			tag_target_id:    targetID,
 			tag_target_group: group,
+			tag_instance:     instance,
 		},
 	}
 	configs = append(configs, target)
