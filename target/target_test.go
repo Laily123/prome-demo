@@ -1,6 +1,7 @@
 package target
 
 import (
+	"os"
 	"testing"
 )
 
@@ -8,6 +9,13 @@ func TestReadFile(t *testing.T) {
 	configFilePath := "/Users/Laily/go/src/prome-demo/test.json"
 	c := ConfigFile{}
 	c.path = configFilePath
+	fileObj, err := os.OpenFile(c.path, os.O_RDWR, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+	defer fileObj.Close()
+	c.f = fileObj
+
 	configs, err := c.readConfigFile()
 	if err != nil {
 		t.Error(err)

@@ -1,50 +1,11 @@
 [
   {
     "targets": [
-      "myslave1:9104",
-      "myslave2:9104"
-    ],
-    "labels": {
-      "env": "prod",
-      "job": "mysql_slave"
-    }
-  },
-  {
-    "targets": [
-      "mymaster:9104"
-    ],
-    "labels": {
-      "env": "prod",
-      "job": "mysql_master"
-    }
-  },
-  {
-    "targets": [
-      "mymaster:9100",
-      "myslave1:9100",
-      "myslave2:9100"
-    ],
-    "labels": {
-      "env": "prod",
-      "job": "node"
-    }
-  },
-  {
-    "targets": [
       "http://127.0.0.1"
     ],
     "labels": {
       "target_group": "",
       "target_id": "xxxx1"
-    }
-  },
-  {
-    "targets": [
-      "http://localhost"
-    ],
-    "labels": {
-      "target_group": "",
-      "target_id": "id"
     }
   }
 ]
