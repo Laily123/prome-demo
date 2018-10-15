@@ -37,5 +37,14 @@
       "target_group": "",
       "target_id": "xxxx1"
     }
+  },
+  {
+    "targets": [
+      "http://localhost"
+    ],
+    "labels": {
+      "target_group": "",
+      "target_id": "id"
+    }
   }
 ]

@@ -14,10 +14,6 @@ const (
 	tag_target_group = "target_group"
 )
 
-var (
-	configDir = ""
-)
-
 // AddTarget 添加 scrape target
 // default metrics path is "/metrics"
 
