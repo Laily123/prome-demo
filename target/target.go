@@ -32,7 +32,6 @@ func AddTarget(configFileName string, addr []string, targetID, group string) err
 	c.f = fileObj
 
 	configs, err := c.readConfigFile()
-	fmt.Println("read: ", err)
 	if err != nil {
 		return err
 	}
@@ -54,7 +53,6 @@ func AddTarget(configFileName string, addr []string, targetID, group string) err
 	configs = append(configs, target)
 
 	err = c.writeConfigFile(configs)
-	fmt.Println("write: ", err)
 	return err
 }
 
@@ -84,9 +82,11 @@ func (c *ConfigFile) readConfigFile() ([]*targetStruct, error) {
 	if err != nil {
 		return nil, err
 	}
-	err = json.Unmarshal(fileData, &configs)
-	if err != nil {
-		return nil, err
+	if len(fileData) == 0 {
+		err = json.Unmarshal(fileData, &configs)
+		if err != nil {
+			return nil, err
+		}
 	}
 	return configs, nil
 }
