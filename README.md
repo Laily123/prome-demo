@@ -23,7 +23,7 @@
 prometheus 提供了四种 metrics。介绍 https://prometheus.io/docs/concepts/metric_types/。  
 使用示例：  
 https://github.com/prometheus/client_golang/blob/master/examples/random/main.go  
-或者该项目的 export.go  
+或者本项目的 export.go  
 
 ### 数据发送给 pushgateway
 1. 构造监控数据  
