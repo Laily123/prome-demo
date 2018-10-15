@@ -26,7 +26,7 @@ func TestReadFile(t *testing.T) {
 func TestAddTarget(t *testing.T) {
 	configFilePath := "/Users/Laily/go/src/prome-demo/test.json"
 	addr := []string{"http://127.0.0.1"}
-	targetID := "xxxx1"
+	targetID := "xxxx2"
 	group := ""
 	err := AddTarget(configFilePath, addr, targetID, group)
 	t.Log(err)

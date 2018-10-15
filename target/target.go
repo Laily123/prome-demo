@@ -82,7 +82,7 @@ func (c *ConfigFile) readConfigFile() ([]*targetStruct, error) {
 	if err != nil {
 		return nil, err
 	}
-	if string(fileData) == "[]" {
+	if string(fileData) != "[]" {
 		err = json.Unmarshal(fileData, &configs)
 		if err != nil {
 			return nil, err
