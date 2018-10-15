@@ -12,13 +12,15 @@ import (
 )
 
 var (
-	test      bool
-	configDir = ""
+	testMetrics bool
+	configDir   = ""
+	port        string
 )
 
 func init() {
-	flag.BoolVar(&test, "test", false, "add test metrics")
+	flag.BoolVar(&testMetrics, "test", false, "add test metrics")
 	flag.StringVar(&configDir, "config-dir", "", "config directory")
+	flag.StringVar(&port, "port", "8080", "server port")
 	flag.Parse()
 	if configDir == "" {
 		log.Println("please add config dir")
@@ -35,14 +37,16 @@ func initProme() {
 func main() {
 	initProme()
 
-	go func() {
-		mux := http.NewServeMux()
-		mux.Handle("/metrics", promhttp.Handler())
-		http.ListenAndServe(":8081", mux)
-	}()
+	if testMetrics {
+		go func() {
+			mux := http.NewServeMux()
+			mux.Handle("/metrics", promhttp.Handler())
+			log.Println(":8081/metrics is start")
+			http.ListenAndServe(":8081", mux)
+		}()
+	}
 
 	http.HandleFunc("/add-target", target.AddTargetHandler)
-	port := "8080"
 	log.Println("server start: ", port)
 	log.Println(http.ListenAndServe(":"+port, nil))
 }
